@@ -1,0 +1,51 @@
+gcc -c -Wall -Wextra -std=gnu99 -O2 -g -D LINUX rtp.c
+rtp.c: In function ‘checksum’:
+rtp.c:70:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+rtp.c:61:27: warning: unused parameter ‘buffer’ [-Wunused-parameter]
+ static int checksum(char *buffer, int length){
+                           ^
+rtp.c:61:39: warning: unused parameter ‘length’ [-Wunused-parameter]
+ static int checksum(char *buffer, int length){
+                                       ^
+rtp.c: In function ‘packetize’:
+rtp.c:88:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+rtp.c:77:32: warning: unused parameter ‘buffer’ [-Wunused-parameter]
+ static PACKET* packetize(char *buffer, int length, int *count){
+                                ^
+rtp.c:77:44: warning: unused parameter ‘length’ [-Wunused-parameter]
+ static PACKET* packetize(char *buffer, int length, int *count){
+                                            ^
+rtp.c:77:57: warning: unused parameter ‘count’ [-Wunused-parameter]
+ static PACKET* packetize(char *buffer, int length, int *count){
+                                                         ^
+rtp.c: In function ‘rtp_send_message’:
+rtp.c:94:33: warning: unused parameter ‘connection’ [-Wunused-parameter]
+ int rtp_send_message(CONN_INFO *connection, MESSAGE*msg){
+                                 ^
+rtp.c:94:53: warning: unused parameter ‘msg’ [-Wunused-parameter]
+ int rtp_send_message(CONN_INFO *connection, MESSAGE*msg){
+                                                     ^
+rtp.c: In function ‘rtp_receive_message’:
+rtp.c:107:41: warning: unused parameter ‘connection’ [-Wunused-parameter]
+ MESSAGE* rtp_receive_message(CONN_INFO *connection){
+                                         ^
+rtp.c: At top level:
+rtp.c:61:12: warning: ‘checksum’ defined but not used [-Wunused-function]
+ static int checksum(char *buffer, int length){
+            ^
+rtp.c:77:16: warning: ‘packetize’ defined but not used [-Wunused-function]
+ static PACKET* packetize(char *buffer, int length, int *count){
+                ^
+rtp.c: In function ‘rtp_send_message’:
+rtp.c:101:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+rtp.c: In function ‘rtp_receive_message’:
+rtp.c:119:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+gcc -Wall -Wextra -std=gnu99 -O2 -g -o prj7-client client.c rtp.o
