@@ -1,0 +1,110 @@
+CS 2200 Summer 2015
+Project 6
+Name:Son Nguyen
+GT Number:903018161
+
+Problem 1B
+----------
+
+#CPU: 1
+
+# of Context Switches: 99
+Total execution time: 67.6 s
+Total time spent in READY state: 389.9 s
+
+RUN FINISHED; exit value 0; real time: 230ms; user: 10ms; system: 10ms
+
+
+#CPUs: 2
+
+# of Context Switches: 113
+Total execution time: 35.8 s
+Total time spent in READY state: 83.1 s
+
+RUN FINISHED; exit value 0; real time: 160ms; user: 0ms; system: 0ms
+
+#CPUs: 4
+
+# of Context Switches: 181
+Total execution time: 33.4 s
+Total time spent in READY state: 0.4 s
+
+RUN FINISHED; exit value 0; real time: 170ms; user: 0ms; system: 0ms
+
+The execution time is reduced by half when the number of CPUs increases from 1 to 2 and the time spent in the Ready state is dramatically reduced. However, the execution time is about the same when the number
+of CPUs from 2 to 4 although the time spent in Ready state is still dramatically reduced. 
+There's no linear relationship between the number of CPUs and the execution time, because the CPUs have no control over the processes that are waiting for I/O operation. As long as the processes are waiting for I/O the CPUs can only execute the processes in the ready queue or just stay idle if the the ready queue is empty. So as the CPUs increases, the execution time is reduced to a certain number which is the total I/O waiting time of all the processes.
+
+Problem 2B
+----------
+
+time slice : 800 ms
+
+# of Context Switches: 136
+Total execution time: 67.6 s
+Total time spent in READY state: 325.4 s
+
+RUN FINISHED; exit value 0; real time: 330ms; user: 0ms; system: 0ms
+--------------------------------------------------------------------
+time slice: 600 ms
+
+# of Context Switches: 161
+Total execution time: 67.6 s
+Total time spent in READY state: 314.5 s
+
+RUN FINISHED; exit value 0; real time: 310ms; user: 0ms; system: 0ms
+---------------------------------------------------------------------
+time slice: 400 ms
+
+# of Context Switches: 203
+Total execution time: 67.6 s
+Total time spent in READY state: 298.8 s
+
+RUN FINISHED; exit value 0; real time: 260ms; user: 0ms; system: 0ms
+--------------------------------------------------------------------
+time slice: 200 ms
+
+# of Context Switches: 362
+Total execution time: 67.5 s
+Total time spent in READY state: 285.2 s
+
+RUN FINISHED; exit value 0; real time: 320ms; user: 0ms; system: 0ms
+--------------------------------------------------------------------
+
+Although the time spent in Ready state reduces when the time slice is reduced, the number of context switches increases. The reason the shortest time slice is not the best because the CPUs spend more time switching between processes than actually executing the processes. Shortest time slice also makes the long processes take longer to finish as they have to spend more time waiting in the ready queue.
+
+Problem 3B
+----------
+
+FIFO:
+
+# of Context Switches: 99
+Total execution time: 67.6 s
+Total time spent in READY state: 389.9 s
+
+RUN FINISHED; exit value 0; real time: 250ms; user: 0ms; system: 10ms
+----------------------------------------------------------------------
+
+ROUND_ROBIN:
+time slice: 400 ms
+
+# of Context Switches: 203
+Total execution time: 67.6 s
+Total time spent in READY state: 298.8 s
+
+RUN FINISHED; exit value 0; real time: 270ms; user: 0ms; system: 20ms
+
+
+--------------------------------------------------------------------
+
+STATIC_PRIORITY:
+# of Context Switches: 168
+Total execution time: 68.8 s
+Total time spent in READY state: 137.1 s
+
+RUN FINISHED; exit value 0; real time: 280ms; user: 0ms; system: 0ms
+--------------------------------------------------------------------
+
+Static priority algorithm is closest to JSF algorithm because it has the shortest waiting time compared to other two algorithms.
+Not like FIFO and Round Rubin which treat all the processes are the same, static priority algorithm can optimize the ready queue just like JSF by assigning a priority to each process
+so that the highest priority processes, which are not necessary a shortest jobs,will always be executed.
